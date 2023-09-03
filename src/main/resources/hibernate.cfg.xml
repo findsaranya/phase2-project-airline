@@ -16,5 +16,6 @@
 		<property name="connection.password">Password!23</property>
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		<mapping class="com.entity.Source"></mapping>
+		<mapping class="com.entity.Admin"></mapping>
 	</session-factory>
 </hibernate-configuration>
