@@ -4,7 +4,15 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-   <filter>
+  <servlet>
+  <servlet-name>FlightSearchServlet</servlet-name>
+  <servlet-class>com.airline.servlets.FlightSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>FlightSearchServlet</servlet-name>
+  <url-pattern>/search</url-pattern>
+  </servlet-mapping>
+  <filter>
   <filter-name>AuthFilter</filter-name>
   <filter-class>com.auth.filters.AuthFilter</filter-class>
   </filter>

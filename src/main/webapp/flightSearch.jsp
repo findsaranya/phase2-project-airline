@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,com.entity.Source"%>
+    pageEncoding="UTF-8" import="java.util.*,com.entity.Places"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html>
@@ -8,18 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:useBean id="sourceDAO" class="com.dao.SourceDAOImpl"></jsp:useBean>
+<jsp:useBean id="placeDAO" class="com.dao.PlacesDAOImpl"></jsp:useBean>
 <%
-List<Source> srcList = sourceDAO.getSourceList();
+List<Places> srcList = placeDAO.getPlaceList();
 request.setAttribute("srcList", srcList);
 
 %>
 <h1>Welcome to Airline Reservation</h1>
   <div>
-    <a href="login.html">Admin Login</a>
+    <a href="admin/loginForm.jsp">Admin Login</a>
   </div>
-  <form action="/search" method="post">
-  <table>
+  <form action="search" method="post">
+  <table border=1>
   <tr>
   <td>
     Date of Travel
@@ -31,10 +31,10 @@ request.setAttribute("srcList", srcList);
     Source
   </td>
   <td>
-  <%out.println(srcList); %>
-  <select style="width:150px;">
+  <select style="width:150px;" name="src">
+  <option value="">Select a Source</option>
   <c:forEach items="${srcList}" var="s">
-  <option value="${s.getSourceId()}">${s.getName()}</option>
+  <option value="${s.getPlaceId()}">${s.getName()}</option>
   </c:forEach>
   </select></td>
   </tr>
@@ -42,12 +42,24 @@ request.setAttribute("srcList", srcList);
   <td>
     Destination
   </td>
-  <td><select>
-  <option>1</option>
+  <td><select style="width:150px;" name="dest">
+  <option value="">Select an option</option>
+  <c:forEach items="${srcList}" var="s">
+  <option value="${s.getPlaceId()}">${s.getName()}</option>
+  </c:forEach>
   </select></td>
   </tr>
+  <tr>
+  <td>No of Persons</td>
+  <td><input type="number" min="1" name="totalCount"/></td>
+  </tr>
+  <tr>
+  <td colspan=2 align="center">
+  <input type="submit" value="search"/>
+  <input type="reset" value="Reset"/>
+  </td>
+  </tr>
   </table>
-   <input type="date" name="date"/>
   </form>
  
 </body>

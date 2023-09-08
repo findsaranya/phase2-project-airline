@@ -12,9 +12,10 @@
     		<%
     		int result = adminDAO.updateAdminPassword(admin);
     		 if(result == 1){
-    			 out.println("updated successfully");
+    			 session.invalidate();
+    			 response.sendRedirect("loginForm.jsp");
     		 }
-    		 }else{ out.println("password not matching");%>
+    		 }else{ out.println("<h4 style='color:red;'>password not matching</h4>");%>
     		 
     			 <jsp:include page="changePasswordForm.jsp"></jsp:include> 
     			 
@@ -27,7 +28,7 @@
   
      
      <%}else{
-     out.println("new and confirm can't be empty");
+     out.println("<h4 style='color:red;'>new and confirm can't be empty</h4>");
      %>
      
    <jsp:include page="changePasswordForm.jsp"></jsp:include>

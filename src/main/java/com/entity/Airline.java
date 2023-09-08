@@ -17,18 +17,17 @@ public class Airline {
 	private int airlineId;
 	@Column(name="airline_name")
 	private String airlineName;
-	@Column(name="airline_regId")
-	private String regId;
-
+	@Column(name="airline_code")
+	private String airlineCode;
 	public Airline() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Airline(int airlineId, String airlineName, String regId) {
+	public Airline(int airlineId, String airlineName, String airlineCode) {
 		super();
 		this.airlineId = airlineId;
 		this.airlineName = airlineName;
-		this.regId = regId;
+		this.airlineCode = airlineCode;
 	}
 	public int getAirlineId() {
 		return airlineId;
@@ -42,16 +41,18 @@ public class Airline {
 	public void setAirlineName(String airlineName) {
 		this.airlineName = airlineName;
 	}
-	public String getRegId() {
-		return regId;
+	public String getAirlineCode() {
+		return airlineCode;
 	}
-	public void setRegId(String regId) {
-		this.regId = regId;
+	public void setAirlineCode(String airlineCode) {
+		this.airlineCode = airlineCode;
 	}
 	@Override
 	public String toString() {
-		return "Airline [airlineId=" + airlineId + ", airlineName=" + airlineName + ", regId=" + regId + "]";
+		return "Airline [airlineId=" + airlineId + ", airlineName=" + airlineName + ", airlineCode=" + airlineCode
+				+ "]";
 	}
+
 	
 	
 

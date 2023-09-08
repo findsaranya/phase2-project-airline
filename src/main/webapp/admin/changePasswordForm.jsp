@@ -12,7 +12,7 @@
 <form method="post" action="<c:out value="${pageContext.request.contextPath }"></c:out>/admin/changePassword.jsp">
 <input type="hidden" name="adminId" value='<c:out value="${sessionScope.adminDetails.getAdminId() }"></c:out>'/>
 <input type="hidden" name="username" value='<c:out value="${sessionScope.adminDetails.getUsername() }"></c:out>'/>
-<table>
+<table border="1">
 <tr>
 <td>New password</td>
 <td><input type="password" name="password"/></td>
@@ -23,7 +23,11 @@
 </tr>
 <tr>
 <td></td>
-<td colspan="2"><input type="submit" value="Save"/></td>
+<td colspan="2">
+<input type="reset" value="Reset"/>
+<input type="submit" value="Save"/>
+
+</td>
 </tr>
 </table>
 </form>

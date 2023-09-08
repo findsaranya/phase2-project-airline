@@ -8,8 +8,11 @@
 </head>
 <body>
 <h1>Welcome Admin</h1>
-<c:out value="${pageContext.request.contextPath }"></c:out>
-<a href='changePasswordForm.jsp'>Change Password</a>
+<a href="viewAirlines.jsp">Airlines List</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="viewPlaces.jsp">Places List</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="viewFlights.jsp">Flight List</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href='changePasswordForm.jsp'>Change Password</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href='logout.jsp'>Logout</a>
 </body>
 </html>

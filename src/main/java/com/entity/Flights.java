@@ -1,7 +1,7 @@
 package com.entity;
 
-import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,81 +10,71 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 @Entity
 @Table(name="flights_tab")
 public class Flights {
 	@Id
 	@Column(name="flight_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-  private int flight_Id;
-	@Column(name="flight_model")
-  private String modelNo;
-	@OneToOne
-	@JoinColumn(name="src_ID")
-  private Source from;
-	@OneToOne
-	@JoinColumn(name="dest_ID")
-  private Destination to;
+    private int flight_Id;
+	@Column(name="flight_Name")
+	private String flightName;
 	@OneToOne
 	@JoinColumn(name="airline_ID")
-  private Airline airline;
-	@Temporal(TemporalType.DATE)
-	@Column(name="dept_date")
-  private Date departureDate;
-	@Temporal(TemporalType.DATE)
-	@Column(name="arrival_date")
-  private Date arrivalDate;
-	@Temporal(TemporalType.TIME)
-	@Column(name="dept_time")
-  private Date departureTime;
-	@Temporal(TemporalType.TIME)
-	@Column(name="arrival_time")
-  private Date arrivalTime;
-	@Column(name="flight_capacity")
-  private int capacity;
+	private Airline airline;
+	@OneToOne
+	@JoinColumn(name="Src_ID")
+	private Places source;
+	@OneToOne
+	@JoinColumn(name="Dest_ID")
+	private Places destination;
+	@Column(name="flight_price")
+	private int price;
 	public Flights() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Flights(int flight_Id, String modelNo, Source from, Destination to, Airline airline, Date departureDate,
-			Date arrivalDate, Date departureTime, Date arrivalTime, int capacity) {
+	
+	
+
+	public Flights(int flight_Id, String flightName, Airline airline, Places source, Places destination, int price) {
 		super();
 		this.flight_Id = flight_Id;
-		this.modelNo = modelNo;
-		this.from = from;
-		this.to = to;
+		this.flightName = flightName;
 		this.airline = airline;
-		this.departureDate = departureDate;
-		this.arrivalDate = arrivalDate;
-		this.departureTime = departureTime;
-		this.arrivalTime = arrivalTime;
-		this.capacity = capacity;
+		this.source = source;
+		this.destination = destination;
+		this.price = price;
 	}
+
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+
 	public int getFlight_Id() {
 		return flight_Id;
 	}
+	public String getFlightName() {
+		return flightName;
+	}
+	
+
+	public void setFlightName(String flightName) {
+		this.flightName = flightName;
+	}
+
 	public void setFlight_Id(int flight_Id) {
 		this.flight_Id = flight_Id;
-	}
-	public String getModelNo() {
-		return modelNo;
-	}
-	public void setModelNo(String modelNo) {
-		this.modelNo = modelNo;
-	}
-	public Source getFrom() {
-		return from;
-	}
-	public void setFrom(Source from) {
-		this.from = from;
-	}
-	public Destination getTo() {
-		return to;
-	}
-	public void setTo(Destination to) {
-		this.to = to;
 	}
 	public Airline getAirline() {
 		return airline;
@@ -92,41 +82,27 @@ public class Flights {
 	public void setAirline(Airline airline) {
 		this.airline = airline;
 	}
-	public Date getDepartureDate() {
-		return departureDate;
+	public Places getSource() {
+		return source;
 	}
-	public void setDepartureDate(Date departureDate) {
-		this.departureDate = departureDate;
+	public void setSource(Places source) {
+		this.source = source;
 	}
-	public Date getArrivalDate() {
-		return arrivalDate;
+	public Places getDestination() {
+		return destination;
 	}
-	public void setArrivalDate(Date arrivalDate) {
-		this.arrivalDate = arrivalDate;
+	public void setDestination(Places destination) {
+		this.destination = destination;
 	}
-	public Date getDepartureTime() {
-		return departureTime;
-	}
-	public void setDepartureTime(Date departureTime) {
-		this.departureTime = departureTime;
-	}
-	public Date getArrivalTime() {
-		return arrivalTime;
-	}
-	public void setArrivalTime(Date arrivalTime) {
-		this.arrivalTime = arrivalTime;
-	}
-	public int getCapacity() {
-		return capacity;
-	}
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
-	}
+
+
+
 	@Override
 	public String toString() {
-		return "Flights [flight_Id=" + flight_Id + ", modelNo=" + modelNo + ", from=" + from + ", to=" + to
-				+ ", airline=" + airline + ", departureDate=" + departureDate + ", arrivalDate=" + arrivalDate
-				+ ", departureTime=" + departureTime + ", arrivalTime=" + arrivalTime + ", capacity=" + capacity + "]";
+		return "Flights [flight_Id=" + flight_Id + ", flightName=" + flightName + ", airline=" + airline + ", source="
+				+ source + ", destination=" + destination + ", price=" + price + "]";
 	}
+
+	
 	
 }

@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hbm2ddl.auto">create</property>
+		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<!--this property's used to   -->
@@ -15,7 +15,9 @@
 		<property name="connection.username">root</property>
 		<property name="connection.password">Password!23</property>
 		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<mapping class="com.entity.Source"></mapping>
+		<mapping class="com.entity.Places"></mapping>
 		<mapping class="com.entity.Admin"></mapping>
+		<mapping class="com.entity.Airline"></mapping>
+		<mapping class="com.entity.Flights"></mapping> 
 	</session-factory>
 </hibernate-configuration>

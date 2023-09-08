@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -44,52 +45,36 @@ public class AuthFilter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		 HttpServletRequest httpRequest = (HttpServletRequest) request;
-	        HttpSession session = httpRequest.getSession(false);
+
+		    HttpServletRequest httpRequest = (HttpServletRequest) request;
+		    HttpServletResponse httpResponse = (HttpServletResponse) response;
+	        
+		    HttpSession session = httpRequest.getSession(false);
 	        
 	        boolean isLoggedIn = (session != null && session.getAttribute("loggedIn") != null) ? (boolean) session.getAttribute("loggedIn") : false; ;
 	        
-	        String loginURI = httpRequest.getContextPath() + "/admin/";
+	        String loginURI = httpRequest.getContextPath() + "/admin/login.jsp";
 	 
 	        boolean isLoginRequest = httpRequest.getRequestURI().equals(loginURI);
 	 
 	        boolean isLoginPage = httpRequest.getRequestURI().endsWith("loginForm.jsp");
 	 
-	        if (isLoggedIn  ) {
-	            // the admin is already logged in and he's trying to login again
-	            // then forwards to the admin's homepage
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/home.jsp");
-	            dispatcher.forward(request, response);
+	        if (isLoggedIn && (isLoginRequest || isLoginPage) ) {	            
+	            httpResponse.sendRedirect(httpRequest.getContextPath()+"/admin/home.jsp");
+	            
 	 
 	        } 
-//	        else if (isLoggedIn || isLoginRequest) {
-//	            // continues the filter chain
-//	            // allows the request to reach the destination
-//	            chain.doFilter(request, response);
-//	 
-//	        } 
-//	        
+	        else if (isLoggedIn || isLoginRequest || isLoginPage) {
+	        	
+	            chain.doFilter(request, response);
+	 
+	        } 	        
 	        else {
-	            // the admin is not logged in, so authentication is required
-	            // forwards to the Login page
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/loginForm.jsp");
-	            dispatcher.forward(request, response);
+	        	httpResponse.sendRedirect(httpRequest.getContextPath()+"/admin/loginForm.jsp");
+	        	
 	 
 	        }
-//		 if(newSession.getAttribute("loggedIn") != null) {
-//			 Boolean result = (Boolean) newSession.getAttribute("loggedIn");
-//			 if(result == true) {
-//				// pass the request along the filter chain
-//					chain.doFilter(request, response);
-//			 }
-//		 }else {
-//			 PrintWriter pw = response.getWriter();
-//			 pw.println("Access Denied");
-//			 request.getRequestDispatcher("index.jsp").forward(req, response);
-//		 }
-          System.out.println("filter called");
+
 		
 	}
 

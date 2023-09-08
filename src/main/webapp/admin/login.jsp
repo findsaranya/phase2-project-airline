@@ -8,14 +8,11 @@ String name = request.getParameter("username");
 String password = request.getParameter("password");
 if(name != null && !name.equals("") && password!=null && !password.equals("")){
 	Admin details = adminDAO.getAdminDetails(name, password);
-	out.println("admin result " + details);
-	System.out.println("pass");
 	if(details != null){
 		session.setAttribute("loggedIn", true);
 		session.setAttribute("adminDetails",details);		
-	%>
-<jsp:include page="home.jsp"></jsp:include>
-<%}else{%>
+    response.sendRedirect("home.jsp");
+}else{%>
 <h4 style="color: red;">Invalid Username or Password</h4>
 <jsp:include page='loginForm.jsp'></jsp:include>
 <% }%>
