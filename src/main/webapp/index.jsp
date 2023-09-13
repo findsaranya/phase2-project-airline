@@ -11,6 +11,10 @@
 <jsp:useBean id="adminDAO" class="com.dao.AdminDAOImpl"></jsp:useBean>
 <% 
 Long result = adminDAO.getAdminRowCount();
+session.removeAttribute("flightId");
+session.removeAttribute("search");
+session.removeAttribute("passengers");
+session.removeAttribute("count");
 if(result == 0){
 %>
 <jsp:useBean id="admin" class="com.entity.Admin"></jsp:useBean>  

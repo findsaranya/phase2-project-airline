@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Change Password</title>
 </head>
 <body>
 <h1>Change Password</h1>

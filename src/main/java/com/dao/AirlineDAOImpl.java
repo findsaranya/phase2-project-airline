@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -9,7 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.entity.Airline;
-import com.entity.Places;
 import com.utils.HibernateUtil;
 
 public class AirlineDAOImpl implements IAirlineDAO {
@@ -36,12 +36,18 @@ public class AirlineDAOImpl implements IAirlineDAO {
 
 	@Override
 	public int deleteAirline(int Id) {
-int res = 0;
+int res = 0; 
+Airline result = null;
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		
-		Airline result = getAirLineDetail(Id);
+		try {
+		result = getAirLineDetail(Id);
+		}catch(SQLIntegrityConstraintViolationException ex) {
+			result = null;
+		}
+		
 		
 		if (result == null) {
 			res = 0;
@@ -66,15 +72,16 @@ int res = 0;
 	}
 
 	@Override
-	public Airline getAirLineDetail(int Id) {
+	public Airline getAirLineDetail(int Id) throws SQLIntegrityConstraintViolationException {
 		Airline result = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		try {
-			result = session.load(Airline.class, Id);// lazy loaded,incase of non existent id throws Objectnotfound
+			result = session.load(Airline.class, Id);
 		} catch (ObjectNotFoundException ex) {
 			System.out.println("exception"+ ex.getMessage());
 			result = null;
-		} finally {
+		}
+		finally {
 			session.close();
 		}
 

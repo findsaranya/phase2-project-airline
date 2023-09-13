@@ -24,6 +24,7 @@ request.setAttribute("search", search);
 
 %>
 <h1>Flights Search Result</h1>
+<a href="flightSearch.jsp">Back</a>
  <table border="1" width="50%">
 <thead>
 <tr>
@@ -42,7 +43,7 @@ request.setAttribute("search", search);
 <td><c:out value="${u.getAirline().getAirlineName() }"></c:out></td>
 <td><c:out value="${u.getSource().getCode().concat(' - ').concat(u.getDestination().getCode()) }"></c:out></td>
 <td><c:out value="${u.getPrice() }"></c:out></td>
-<td><a href="passengerForm.jsp">Book</a></td>
+<td><a href="passengerForm.jsp?flightId=${u.getFlight_Id() }">Book</a></td>
 
 </tr>
 </c:forEach>

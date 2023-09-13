@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add Source</title>
+<title>Add Places</title>
 </head>
 <body>
 <jsp:useBean id="placeDAO" class="com.dao.PlacesDAOImpl"></jsp:useBean>
