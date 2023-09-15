@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Airline Reservation</title>
+<title>Flyway</title>
 </head>
 <body>
 <jsp:useBean id="adminDAO" class="com.dao.AdminDAOImpl"></jsp:useBean>
@@ -23,7 +23,7 @@ if(result == 0){
 <%
 int row = adminDAO.createAdmin(admin);
 } %>
-<h1>Welcome to Airline Reservation</h1>
+<h1>Welcome to Flyaway Reservation</h1>
 
 <a href="flightSearch.jsp">Flight Search</a>
 <c:if test="${sessionScope.loggedIn == null }">
